@@ -27,6 +27,25 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]
+
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    # other allowed methods
+]
+
+CORS_ALLOW_HEADERS = [
+    'Accept',
+    'Content-Type',
+    # other allowed headers
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+APPEND_SLASH=False
 
 # Application definition
 
@@ -37,9 +56,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'corsheaders',
+    'backend',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -80,6 +103,17 @@ DATABASES = {
     }
 }
 
+DATABASES = {
+   'default': {
+       'ENGINE': 'djongo',
+       'CLIENT': {
+           
+           'host': "mongodb+srv://nagi:nagi@cluster0.ohv5gsc.mongodb.net/nagidb",
+           'name':'TechSpeak',
+           'authMechanism': "SCRAM-SHA-1",
+        }
+   }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
