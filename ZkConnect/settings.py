@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-7d8gkk!)23c!18s22iznmur^!&b+dryv@a$2+9#-8=$1i@g(2e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', '.now.sh','*']
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
@@ -96,20 +96,20 @@ WSGI_APPLICATION = 'ZkConnect.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 DATABASES = {
    'default': {
        'ENGINE': 'djongo',
        'CLIENT': {
            
-           'host': "mongodb+srv://nagi:nagi@cluster0.ohv5gsc.mongodb.net/nagidb",
-           'name':'TechSpeak',
+           'host': "mongodb+srv://nagi:nagi@cluster0.ohv5gsc.mongodb.net/zkconnect",
+           'name':'zkconnect',
            'authMechanism': "SCRAM-SHA-1",
         }
    }
@@ -149,7 +149,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
+import os
+
 STATIC_URL = 'static/'
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
