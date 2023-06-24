@@ -15,7 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from backend import views
 
-urlpatterns = [
+urlpatterns = []
+
+common = [
+    path('', views.home),
     path('admin/', admin.site.urls),
 ]
+
+
+login_fn = [
+    path('signup/', views.signup, name='signup'),
+    path('login/', views.login, name='login'),
+]
+
+urlpatterns = urlpatterns + common + login_fn
