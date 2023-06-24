@@ -3,3 +3,4 @@ django
 pymongo==3.12.3
 opencv-python
 django-cors-headers
+django==4.1.9
