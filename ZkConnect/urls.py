@@ -15,7 +15,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls.static import static
+from backend import views
+from ZkConnect import settings
 
-urlpatterns = [
+urlpatterns = []
+
+common = [
+    path('', views.home),
     path('admin/', admin.site.urls),
 ]
+
+
+login_fn = [
+    path('signup/', views.signup, name='signup'),
+    path('login/', views.login, name='login'),
+]
+
+urlpatterns = urlpatterns + common + login_fn
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
